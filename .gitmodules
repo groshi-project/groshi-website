@@ -1,0 +1,6 @@
+[submodule "groshi"]
+	path = groshi
+	url = https://github.com/groshi-project/groshi
+[submodule "webgroshi"]
+	path = webgroshi
+	url = https://github.com/groshi-project/webgroshi
