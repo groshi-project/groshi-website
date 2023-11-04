@@ -1,0 +1,35 @@
+services:
+  groshi:
+    extends:
+      file: "./groshi/docker-compose.yml"
+      service: groshi
+    ports: []
+
+  groshi-mongo:
+    extends:
+      file: "./groshi/docker-compose.yml"
+      service: groshi-mongo
+
+  webgroshi:
+    extends:
+      file: "./webgroshi/docker-compose.yml"
+      service: webgroshi
+    ports: []
+
+  groshi-website-nginx:
+    image: nginx
+    container_name: groshi-website-nginx
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "80:80"
+    depends_on:
+      - groshi
+      - groshi-mongo
+
+secrets:
+  groshi:
+    file: ./groshi/.secrets/groshi
+
+  groshi-mongo:
+    file: ./groshi/.secrets/groshi-mongo
